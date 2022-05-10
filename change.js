@@ -7,40 +7,21 @@
  * 
  * 동전을 큰 단위부터 거슬러주면 최소 개수가 나온다.
  */
-// 1260원이라는 가정하에
 function changeAnswer(change) {
     let answer = 0;
     console.log("거스름돈 => ", change)
     let left = change;
+    const coin = [500, 100, 50, 10];
 
-    // 500원 2개 => 남은돈 260원
-    if (left >= 500) {
-        const division = Math.floor(left / 500);
-        left -= division * 500;
-        answer += division;
-    } 
-    // 100원 2개 => 남은돈 60원
-    if (left >= 100) {
-        const division = Math.floor(left / 100);
-        left -= division * 100;
-        answer += division;
-    } 
-    // 50원 1개 => 남은돈 10원
-    if (left >= 50) {
-        const division = Math.floor(left / 50);
-        left -= division * 50;
-        answer += division;
-    } 
-    // 10원 1개 => 남은돈 없음
-    if (left >= 10) {
-        const division = Math.floor(left / 10);
-        left -= division * 10;
-        answer += division;
-    } 
-
-    // 총 6개
+    for (let i = 0; i < coin.length; i++) {
+        // 동전 별로 몇개로 거슬러줄 수 있는지 계산한다
+        const coinCount = Math.floor(left / coin[i]);
+        // 동전을 거슬러준 후 남은 금액을 나머지로 계산한다
+        left %= coin[i];
+        // 정답에 거슬러준 코인의 개수를 더해준다.
+        answer += coinCount;
+    }
     return answer
 }
 
 console.log('총 코인', changeAnswer(1260));
-console.log('총 코인', changeAnswer(1000));
