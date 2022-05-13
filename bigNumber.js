@@ -17,9 +17,14 @@ prompt.start();
  * 입력으로 주어지는 K는 항상 M보다 작거나 같다.
  * 
  * 첫째줄에 동빈이의 큰수의 법칙에 따라 더해진 답을 출력한다.
+ * 
+ * 5 8 3 로 첫번째 입력
+ * 2 4 5 4 6 으로 두번쨰 입력
+ * 답은 46
  */
  prompt.get(["input", "numbers"], function(err, res){
      let answer = 0;
+     let answer2 = 0;
     const { input, numbers } = res;
     const inputSplit = input.split(' ');
 
@@ -35,6 +40,7 @@ prompt.start();
     const second = numbersArray[numbersArray.length - 2];
 
     let addCount = 0;
+    // 아래의 경우 M을 입력하면 M번 연산하기 때문에 시간 복잡도는 O(N)이다.
     for (let i = 0; i < M; i++) {
         if (addCount === K) {
             addCount = 0;
@@ -44,7 +50,21 @@ prompt.start();
             answer += last;
         }
     }
-    console.log(answer);
+
+    /**
+     * 위의 경우를 줄이는 방법이 있는데 <수열의 규칙>을 찾으면된다.
+     * 예를들어, 위의 예제의 경우 제일 큰수는 6이고 두번쨰로 큰수는 5이다.
+     * 
+     * 그리고 8번을 더할거고 반복제한이 3이라면,
+     * 6 + 6 + 6 + 5 / 6 + 6 + 6 + 5 이렇게된다.
+     * 따라서 첫번째 수열의 곱하기 2를 하면된다.
+     * 
+     * 아래처럼하면 한번의 연산으로 끝나기 때문에 시간복잡도는 O(1)이 된다.
+     */
+    answer2 = ((last * K) + second) * Math.ceil(M / (K + 1)) + (M % (K + 1) * last)
+
+    console.log('O(N) =>', answer);
+    console.log('O(1) =>', answer2);
 });
 
 
