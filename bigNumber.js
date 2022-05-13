@@ -23,8 +23,8 @@ prompt.start();
     const { input, numbers } = res;
     const inputSplit = input.split(' ');
 
-    const addLimit = Number(inputSplit[1]);
-    const sameIndexLimit = Number(inputSplit[2]);
+    const M = Number(inputSplit[1]);
+    const K = Number(inputSplit[2]);
 
     const numbersArray = numbers
         .split(' ')
@@ -33,11 +33,10 @@ prompt.start();
 
     const last = numbersArray[numbersArray.length - 1];
     const second = numbersArray[numbersArray.length - 2];
-        console.log(numbersArray)
 
     let addCount = 0;
-    for (let i = 0; i < addLimit; i++) {
-        if (addCount === sameIndexLimit) {
+    for (let i = 0; i < M; i++) {
+        if (addCount === K) {
             addCount = 0;
             answer += second;
         } else {
@@ -46,6 +45,6 @@ prompt.start();
         }
     }
     console.log(answer);
-    });
+});
 
 
