@@ -26,12 +26,16 @@ prompt.get(["input"], function(err, res){
     let N = Number(splitInput[0]);
     const K = Number(splitInput[1]);
 
+    // N이 1이 아니면 반복
     while(N !== 1) {
+        // N을 K로 나눈 나머지가 0이면 N을 K로 나눈다.
         if (N % K === 0) {
             N /= K;
         } else {
+            // 위조건이 아니면 1번 조건인 -1하는 것으로 처리
             N -= 1;
         }
+        // 한번 수행할때마다 +1 씩 해준다
         answer++;
     }
 
