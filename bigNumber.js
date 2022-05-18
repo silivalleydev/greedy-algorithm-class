@@ -7,7 +7,7 @@ prompt.start();
  * 단, 베열의 특정한 인덱스에 해당하는 수가 연속해서 K번 초과해서 더해질 수 없다.
  * 
  * 배열의 크기 N, 숫자가 더해지는 횟수 M 그리고 초과 제한 개수 K이다.
- * 
+ * [1, 2, 3, 4, 5]  8 / 3  6 + 6 + 6 + 5 + 6 + 6 + 6 + 5
  * 첫째 줄에 N(2 <= N <= 1000), M(1 <= M <= 10000), K(1 <= K <= 10000)의 자연수가 주어지며,
  * 각 자연수는 공백으로 구분한다.
  * 
@@ -30,6 +30,8 @@ prompt.start();
 
     const M = Number(inputSplit[1]);
     const K = Number(inputSplit[2]);
+
+    
 
     const numbersArray = numbers
         .split(' ')
